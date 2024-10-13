@@ -55,7 +55,6 @@ function showFields() {
     }
 }
 
-
 function calculateWeight() {
     const sectionType = document.getElementById("sectionType").value;
     const fields = document.getElementById("fields").children;
@@ -90,15 +89,15 @@ function calculateWeight() {
 
             case "Hollow Structural Sections - Square":
                 const [lengthSquare, sideLengthSquare, thicknessSquare] = values;
-                const outerAreaSquare = Math.pow(sideLengthSquare / 1000, 2); // المساحة الخارجية
-                const innerAreaSquare = Math.pow((sideLengthSquare - 2 * thicknessSquare) / 1000, 2); // المساحة الداخلية
+                const outerAreaSquare = Math.pow(sideLengthSquare / 1000, 2);
+                const innerAreaSquare = Math.pow((sideLengthSquare - 2 * thicknessSquare) / 1000, 2);
                 weight = (lengthSquare / 1000) * (outerAreaSquare - innerAreaSquare) * density;
                 break;
 
             case "Hollow Structural Sections - Rectangular":
                 const [lengthRect, widthRect, heightRect, thicknessRect] = values;
-                const outerAreaRect = (widthRect / 1000) * (heightRect / 1000); // المساحة الخارجية
-                const innerAreaRect = ((widthRect - 2 * thicknessRect) / 1000) * ((heightRect - 2 * thicknessRect) / 1000); // المساحة الداخلية
+                const outerAreaRect = (widthRect / 1000) * (heightRect / 1000);
+                const innerAreaRect = ((widthRect - 2 * thicknessRect) / 1000) * ((heightRect - 2 * thicknessRect) / 1000);
                 weight = (lengthRect / 1000) * (outerAreaRect - innerAreaRect) * density;
                 break;
 
@@ -130,7 +129,6 @@ function calculateWeight() {
             case "T-profile":
                 const [lengthT, widthT, heightT, thicknessT] = values;
                 weight = (lengthT / 1000) * ((widthT / 1000) * (heightT / 1000) - ((widthT - thicknessT) / 1000) * ((heightT - thicknessT) / 1000)) * density;
-
                 break;
 
             case "Hexagonal Sections":
@@ -148,7 +146,8 @@ function calculateWeight() {
         weight *= quantity;
 
         // Display the result
-        document.getElementById("result").innerHTML = `Total Weight: ${weight.toFixed(1)} kg`;
+        const formattedWeight = (Math.floor(weight * 10) / 10).toString(); // لتنسيق الرقم برقم واحد بعد العلامة العشرية
+        document.getElementById("result").innerHTML = `Total Weight: ${formattedWeight} kg`;
     } else {
         document.getElementById("result").innerHTML = "Please select a section type and enter valid dimensions.";
     }
