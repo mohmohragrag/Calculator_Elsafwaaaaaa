@@ -146,8 +146,7 @@ function calculateWeight() {
         weight *= quantity;
 
         // Display the result
-        const formattedWeight = (Math.floor(weight * 10) / 10).toString(); // لتنسيق الرقم برقم واحد بعد العلامة العشرية
-        document.getElementById("result").innerHTML = `Total Weight: ${formattedWeight} kg`;
+     document.getElementById("result").innerHTML = `Total Weight: ${weight.toFixed(1)} kg`;
     } else {
         document.getElementById("result").innerHTML = "Please select a section type and enter valid dimensions.";
     }
